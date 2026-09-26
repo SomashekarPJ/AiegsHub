@@ -1,0 +1,6 @@
+{
+  "name": "AegisSurge - Predictive Coastal Risk & Vulnerability Intelligence Platform",
+  "description": "AI-powered anticipatory disaster modeling, cyclone storm surge simulation, GEE satellite telemetry, infrastructure exposure mapping, and automated early-warning dispatches for the Bay of Bengal & APAC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
