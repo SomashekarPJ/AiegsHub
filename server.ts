@@ -678,7 +678,13 @@ const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'production') {
   const { createServer } = await import('vite');
   const vite = await createServer({
-    server: { middlewareMode: true, port: Number(PORT), host: '0.0.0.0' },
+    server: {
+      middlewareMode: true,
+      port: Number(PORT),
+      host: '0.0.0.0',
+      hmr: false,
+      watch: null,
+    },
     appType: 'custom',
   });
   app.use(vite.middlewares);

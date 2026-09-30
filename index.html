@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Suppress Vite HMR WebSocket connection errors in cloud container/iframe environment
+      window.addEventListener('unhandledrejection', function(event) {
+        var reason = event.reason;
+        var text = (reason && (reason.message || reason.stack || String(reason))) || '';
+        if (text.indexOf('WebSocket') !== -1 || text.indexOf('websocket') !== -1) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      });
+      window.addEventListener('error', function(event) {
+        var msg = (event && (event.message || '')) || '';
+        if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      });
+    </script>
     <title>AegisBay — Anticipatory Coastal Disaster Intelligence & Parametric Risk Modeling</title>
     <meta name="description" content="Anticipatory coastal disaster intelligence, cyclone storm surge simulation, GEE satellite telemetry, infrastructure exposure mapping, and automated early-warning dispatches for the Bay of Bengal & APAC." />
     <meta property="og:title" content="AegisBay — Anticipatory Coastal Intelligence" />
