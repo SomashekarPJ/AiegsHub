@@ -20,6 +20,15 @@ export const ScenarioControls: React.FC<ScenarioControlsProps> = ({
   const [centralPressure, setCentralPressure] = useState(activeScenario.centralPressure);
   const [rainfallRate, setRainfallRate] = useState(activeScenario.rainfallRate);
 
+  React.useEffect(() => {
+    if (activeScenario) {
+      setWindSpeed(activeScenario.maxWindSpeed);
+      setSurgeHeight(activeScenario.peakSurgeHeight);
+      setCentralPressure(activeScenario.centralPressure);
+      setRainfallRate(activeScenario.rainfallRate);
+    }
+  }, [activeScenario, isOpen]);
+
   if (!isOpen) return null;
 
   const handleSave = () => {

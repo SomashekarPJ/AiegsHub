@@ -69,6 +69,11 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       ? scenario.trajectoryPoints[currentPointIndex]
       : scenario.trajectoryPoints[3] || scenario.trajectoryPoints[0];
 
+  const activeTrajectoryPointRef = useRef(activeTrajectoryPoint);
+  useEffect(() => {
+    activeTrajectoryPointRef.current = activeTrajectoryPoint;
+  }, [activeTrajectoryPoint]);
+
   const getBaseTileConfig = (style: 'esri_light' | 'esri_sat' | 'osm') => {
     switch (style) {
       case 'esri_sat':
@@ -124,16 +129,17 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
       map.on('click', (e: L.LeafletMouseEvent) => {
         const { lat, lng } = e.latlng;
-        const eyeLat = activeTrajectoryPoint.lat;
-        const eyeLng = activeTrajectoryPoint.lng;
+        const currentTargetPoint = activeTrajectoryPointRef.current;
+        const eyeLat = currentTargetPoint.lat;
+        const eyeLng = currentTargetPoint.lng;
         const distKm = Math.sqrt(
           Math.pow((lat - eyeLat) * 111, 2) + Math.pow((lng - eyeLng) * 111, 2)
         );
 
         const maxDist = 220;
         const proximityFactor = Math.max(0, 1 - distKm / maxDist);
-        const estSurge = Number((activeTrajectoryPoint.surgeHeight * proximityFactor * (1.15 - Math.random() * 0.25)).toFixed(1));
-        const estWind = Math.round(activeTrajectoryPoint.windSpeed * Math.max(0.35, proximityFactor));
+        const estSurge = Number((currentTargetPoint.surgeHeight * proximityFactor * (1.15 - Math.random() * 0.25)).toFixed(1));
+        const estWind = Math.round(currentTargetPoint.windSpeed * Math.max(0.35, proximityFactor));
         const estElevation = Number((1.5 + Math.sin(lat * 8) * 3 + Math.abs(lat - 20) * 1.5).toFixed(1));
 
         let evacStatus = 'STAGING_READY';

@@ -16,10 +16,10 @@ export const HydrographDashboard: React.FC<HydrographDashboardProps> = ({
   const [hoveredPoint, setHoveredPoint] = useState<any | null>(null);
 
   // Generate 12-step realistic astronomical tide + meteorological surge time-series
-  const points = scenario.trajectoryPoints;
-  const peakSurge = scenario.peakSurgeHeight;
-  const maxWind = scenario.maxWindSpeed;
-  const centralPressure = scenario.centralPressure;
+  const points = scenario?.trajectoryPoints || [];
+  const peakSurge = Number(scenario?.peakSurgeHeight) || 3.5;
+  const maxWind = Number(scenario?.maxWindSpeed) || 180;
+  const centralPressure = Number(scenario?.centralPressure) || 940;
 
   // Build high-resolution simulated curve points (24 hours timeline interpolation)
   const timeSteps = [

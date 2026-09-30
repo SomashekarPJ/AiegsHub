@@ -233,7 +233,7 @@ export const SituationReportModal: React.FC<SituationReportModalProps> = ({
                   Synthesizing Mission-Critical Intelligence
                 </h4>
                 <p className="text-xs text-[#64748b] max-w-md mt-1">
-                  Gemini 3.8 Flash is calculating exposed asset valuations, tidal hydrographs, and inter-agency action matrices.
+                  Gemini Flash is calculating exposed asset valuations, tidal hydrographs, and inter-agency action matrices.
                 </p>
               </div>
             </div>

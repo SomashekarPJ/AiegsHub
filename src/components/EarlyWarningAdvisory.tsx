@@ -220,7 +220,7 @@ export const EarlyWarningAdvisory: React.FC<EarlyWarningAdvisoryProps> = ({
                   Synthesizing Hydro-Meteorological Emergency Dispatch
                 </h3>
                 <p className="text-xs text-[#64748b] max-w-md mt-1">
-                  Gemini 3.8 Flash is drafting zone-by-zone evacuation directives, infrastructure orders, and public broadcast texts.
+                  Gemini Flash is drafting zone-by-zone evacuation directives, infrastructure orders, and public broadcast texts.
                 </p>
               </div>
             </div>
